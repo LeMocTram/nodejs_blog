@@ -1,6 +1,59 @@
 @import 'variables';
 
 .header{
-    border: 1px solid black;
-    color: $red-color;
+   margin-bottom: 10vh;
 }
+
+
+.avatar{
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+
+}
+.card-courses{
+    margin-top: 30px;
+    .image-container img {
+        width: 100%; /* Đảm bảo hình ảnh lấp đầy kích thước của container */
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+  
+      .image-container:hover img {
+        opacity: 0.7;
+      }
+  
+      .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        opacity: 0; /* Bắt đầu ẩn nút "Xem thêm" */
+        transition: opacity 0.3s ease;
+      }
+  
+      .image-container:hover .overlay {
+        opacity: 1; /* Hiển thị nút "Xem thêm" khi hover vào */
+      }
+}
+
+
+.card-title{
+    text-decoration: none;
+    text-align: justify;
+}
+.container-button-study{
+    border-radius: 10px;
+    background-color: rgb(118, 125, 123);
+    border: 1px solid red;
+    margin-top: 50px;
+    display: grid;
+    place-items: center; /* Căng giữa cả hai chiều */
+    height: 300px;
+
+}
+
+
