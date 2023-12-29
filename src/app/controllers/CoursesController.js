@@ -43,7 +43,7 @@ class CoursesController {
                 notify('success')
 
             })
-            .catch(next => console.error('Error saving user to database', next));
+            .catch(next => console.error('Error saving courses to database', next));
     }
     //[GET]courses/edit/:id
     edit = (req, res, next) => {
@@ -55,6 +55,30 @@ class CoursesController {
             })
             .catch(next)
 
+    }
+
+    update = async (req, res, next) => {
+        const formData = req.body;
+        const id = req.params.id;
+        const updatedData = {
+            name: formData.name,
+            description: formData.description,
+            videoId: formData.videoId,
+            image: `https://img.youtube.com/vi/${formData.videoId}/sddefault.jpg`,
+            level: formData.level
+        };
+        await Course.findByIdAndUpdate(
+            id,
+            { $set: updatedData },
+            { new: true }, // Tùy chọn này để trả về bản ghi đã được cập nhật
+
+        )
+            .then(() => {
+                res.redirect('/me/stored/courses')
+
+
+            })
+            .catch(next => console.error('Error saving courses to database', next));
     }
 }
 
