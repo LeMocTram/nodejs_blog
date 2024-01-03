@@ -80,6 +80,14 @@ class CoursesController {
             })
             .catch(next => console.error('Error saving courses to database', next));
     }
+
+    delete = (req, res, next) => {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => {
+                res.redirect('back')
+            })
+            .catch(next => console.error('Delete fail', next));
+    }
 }
 
 module.exports = new CoursesController;

@@ -20,26 +20,26 @@
                     <td>{{this.level}}</td>
                     <td>{{this.createdAt}}</td>
 
-                    <td><a type="button" href="/courses/edit/{{this._id}}" class="btn-edit">Sửa</a>
-                        <a type="button" class="btn-delete" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Xóa</a>
+                    <td><a href="/courses/edit/{{this._id}}" class="btn btn-link btn-edit">Sửa</a>
+                        <a class="btn btn-link " data-bs-toggle="modal" data-id="{{this._id}}"
+                            data-bs-target="#deleteModal">Xóa</a>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa khóa học</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                        Bạn có chắc muốn xóa khóa học này ?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button id="btn-delete" type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Xóa</button>
+                                        <button type="button" class="btn btn-primary">Hủy</button>
                                     </div>
                                 </div>
                             </div>
@@ -52,3 +52,31 @@
         </table>
     </div>
 </div>
+
+
+{{!-- delete hidden form --}}
+<form name="delete-form" method="POST"></form>
+
+<script>
+    var deleteForm = document.forms['delete-form']
+
+    const exampleModal = document.getElementById('deleteModal')
+    var idCourse
+
+    if (exampleModal) {
+        exampleModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget
+            idCourse = button.getAttribute('data-id')
+            console.log(idCourse);
+
+        })
+        var deleteButton = document.getElementById('btn-delete');
+
+        deleteButton.onclick = function () {
+            deleteForm.action = '/courses/delete/' + idCourse + '?_method=DELETE';
+            deleteForm.submit();
+        }
+
+
+    }
+</script>
