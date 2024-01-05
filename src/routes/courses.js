@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const coursesController = require('../app/controllers/CoursesController')
 
+router.patch('/restore/:id', coursesController.restore)
 router.delete('/delete/:id', coursesController.delete)
 router.put('/update/:id', coursesController.update)
 router.get('/edit/:id', coursesController.edit)

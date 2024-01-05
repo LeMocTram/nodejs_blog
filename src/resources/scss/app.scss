@@ -1,7 +1,18 @@
 @import 'variables';
 
-.header{
+.header-contaier{
    margin-bottom: 10vh;
+   
+}
+.body-container{
+  margin-top: 30px;
+  min-height: 1000px;
+  margin-left: 300px; 
+  margin-right: 300px; 
+}
+.footer-container{  
+  min-height: 100px;
+  margin-top: 30px;
 }
 
 
